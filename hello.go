@@ -11,34 +11,34 @@ import (
 )
 
 // [START greeting_struct]
-/*type Greeting struct {
+type Greeting struct {
         Author  string
         Content string
         Date    time.Time
-}*/
+}
 // [END greeting_struct]
 
 func init() {
         http.HandleFunc("/", root)
-        //http.HandleFunc("/sign", sign)
+        http.HandleFunc("/sign", sign)
 }
 
 // guestbookKey returns the key used for all guestbook entries.
-//func guestbookKey(c appengine.Context) *datastore.Key {
+func guestbookKey(c appengine.Context) *datastore.Key {
         // The string "default_guestbook" here could be varied to have multiple guestbooks.
-//       return datastore.NewKey(c, "Guestbook", "default_guestbook", 0, nil)
-//}
+        return datastore.NewKey(c, "Guestbook", "default_guestbook", 0, nil)
+}
 
 // [START func_root]
 func root(w http.ResponseWriter, r *http.Request) {
-        /*c := appengine.NewContext(r)
+        c := appengine.NewContext(r)
         // Ancestor queries, as shown here, are strongly consistent with the High
         // Replication Datastore. Queries that span entity groups are eventually
         // consistent. If we omitted the .Ancestor from this query there would be
         // a slight chance that Greeting that had just been written would not
         // show up in a query.
         // [START query]
-        //q := datastore.NewQuery("Greeting").Ancestor(guestbookKey(c)).Order("-Date").Limit(10)
+        q := datastore.NewQuery("Greeting").Ancestor(guestbookKey(c)).Order("-Date").Limit(10)
         // [END query]
         // [START getall]
         greetings := make([]Greeting, 0, 10)
@@ -49,23 +49,17 @@ func root(w http.ResponseWriter, r *http.Request) {
         // [END getall]
         if err := guestbookTemplate.Execute(w, greetings); err != nil {
                 http.Error(w, err.Error(), http.StatusInternalServerError)
-        }*/
+        }
 }
 // [END func_root]
 
 var guestbookTemplate = template.Must(template.New("book").Parse(`
 <html>
   <head>
-    <title>Whats Your Time Now ?</title>
+    <title>Go Guestbook</title>
   </head>
   <body>
-     
-  </body>
-</html>
-`))
-
-/*
-{{range .}}
+    {{range .}}
       {{with .Author}}
         <p><b>{{.}}</b> wrote:</p>
       {{else}}
@@ -77,11 +71,12 @@ var guestbookTemplate = template.Must(template.New("book").Parse(`
       <div><textarea name="content" rows="3" cols="60"></textarea></div>
       <div><input type="submit" value="Sign Guestbook"></div>
     </form>
-
-*/
+  </body>
+</html>
+`))
 
 // [START func_sign]
-/*func sign(w http.ResponseWriter, r *http.Request) {
+func sign(w http.ResponseWriter, r *http.Request) {
         c := appengine.NewContext(r)
         g := Greeting{
                 Content: r.FormValue("content"),
@@ -101,5 +96,5 @@ var guestbookTemplate = template.Must(template.New("book").Parse(`
                 return
         }
         http.Redirect(w, r, "/", http.StatusFound)
-}*/
+}
 // [END func_sign]
