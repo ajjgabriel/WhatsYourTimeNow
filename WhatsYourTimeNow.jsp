@@ -99,7 +99,12 @@ h1 {
 </style>
 </head>
   <body>
-    <div align="center">
+	<div align="center">
+	<!--<form action="/timeInput" method="post">
+	  <input type="text" name="abbreviation" rows="3" cols="60"></input>
+      <input type="text" name="content" rows="3" cols="60"></input>
+      <input type="submit" value="Time">
+    </form>-->
       <table border="0" cellspacing="0" cellpadding="0" >
         <tbody>
           <tr>
