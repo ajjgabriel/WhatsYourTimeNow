@@ -330,7 +330,13 @@ h1 {
 		<option value="UTCPlus6">Yekaterinburg Time</option>
 		<option value="UTC">Zulu Time Zone</option>
 		</select>
-      <input type="text" name="content" rows="3" cols="60"></input>
+	  <p/>
+      <input type="text" name="days" rows="3" cols="30" value="10">Day</input>
+	  <input type="text" name="months" rows="3" cols="30"  value="10">Month</input>
+      <input type="text" name="years" rows="3" cols="30"  value="2014">Year</input>
+	  <input type="text" name="hours" rows="3" cols="30"  value="10">Hours</input>
+	  <input type="text" name="minutes" rows="3" cols="30"  value="10">Minutes</input>
+	  <p/>
       <input type="submit" value="Time">
     </form>
       <table border="0" cellspacing="0" cellpadding="0" >
