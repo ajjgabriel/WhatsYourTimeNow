@@ -53,6 +53,8 @@ type TimeEvent struct {
 }
 func init() {
     http.HandleFunc("/", root)
+	http.Handle("/css/", http.FileServer(http.Dir(".")))
+	http.Handle("/js/", http.FileServer(http.Dir(".")))
 	http.HandleFunc("/timeInput", timeInput)
 }
 
@@ -60,7 +62,7 @@ func timeToBeAdded(abbreviation string, years int, months time.Month, days int, 
    
    
    if abbreviation == "UTCMinus1" {
-		return time.Date(years, months, days, hours, minutes, 0, 0, time.UTC).Sub(time.Now().UTC().Add(-1 * time.Hour))
+		return time.Date(years, months, days, 0, 0, 0, 0, time.UTC).Sub(time.Now().UTC().Add(-1 * time.Hour))
    } else if abbreviation == "UTCMinus2" {
 		return time.Date(years, months, days, hours, minutes, 0, 0, time.UTC).Sub(time.Now().UTC().Add(-2 * time.Hour))
    } else if abbreviation == "UTCMinus230" {
@@ -141,23 +143,21 @@ func timeToBeAdded(abbreviation string, years int, months time.Month, days int, 
 		return time.Date(years, months, days, hours, minutes, 0, 0, time.UTC).Sub(time.Now().UTC().Add(14 * time.Hour))
    }
    
-   
-   
-   
    return 0
 }
 
 func timeInput(w http.ResponseWriter, r *http.Request) {
-// err := signTemplate.Execute(w, r.FormValue("abbreviation"))
-// err := signTemplate.Execute(w, r.FormValue("content"))
+	
 	
 	timeEvent := new(TimeEvent);
-	years, _ := strconv.Atoi(r.FormValue("years"))
-	months, _ := strconv.Atoi(r.FormValue("months"))
-	days, _ := strconv.Atoi(r.FormValue("days"))
-	hours, _ := strconv.Atoi(r.FormValue("hours"))
-	minutes, _ := strconv.Atoi(r.FormValue("minutes"))
+	
+	years, _ := strconv.Atoi(r.FormValue("datepicker")[0:4])
+	months, _ := strconv.Atoi(r.FormValue("datepicker")[5:7])
+	days, _ := strconv.Atoi(r.FormValue("datepicker")[8:10])
+	hours, _ := strconv.Atoi(r.FormValue("datepicker")[11:13])
+	minutes, _ := strconv.Atoi(r.FormValue("datepicker")[14:16])
 	var addedTiming = timeToBeAdded(r.FormValue("abbreviation"), years,time.Month(months),days,hours,minutes)
+	
 	timeEvent.UTCMinus1 = time.Now().UTC().Add(-1 * time.Hour).Add(addedTiming)
 	timeEvent.UTCMinus2 = time.Now().UTC().Add(-2 * time.Hour).Add(addedTiming)
 	timeEvent.UTCMinus230 = time.Now().UTC().Add(-2 * time.Hour).Add(-30 * time.Minute).Add(addedTiming)
@@ -199,13 +199,13 @@ func timeInput(w http.ResponseWriter, r *http.Request) {
 	timeEvent.UTCPlus13 = time.Now().UTC().Add(13 * time.Hour).Add(addedTiming)
 	timeEvent.UTCPlus1345 = time.Now().UTC().Add(13 * time.Hour).Add(45 * time.Minute).Add(addedTiming)
 	timeEvent.UTCPlus14 = time.Now().UTC().Add(14 * time.Hour).Add(addedTiming)
-	
 	whatsYourTimeNowForm.ExecuteTemplate(w, "WhatsYourTimeNow.jsp", timeEvent);
 }
 
 func root(w http.ResponseWriter, r *http.Request) {
 	
 	timeEvent := new(TimeEvent);
+	
 	timeEvent.UTCMinus1 = time.Now().UTC().Add(-1 * time.Hour)
 	timeEvent.UTCMinus2 = time.Now().UTC().Add(-2 * time.Hour)
 	timeEvent.UTCMinus230 = time.Now().UTC().Add(-2 * time.Hour).Add(-30 * time.Minute)

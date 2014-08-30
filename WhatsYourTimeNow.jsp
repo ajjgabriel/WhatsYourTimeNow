@@ -8,99 +8,51 @@ body {
   background: #EEEEEE;
   font-family: "Open Sans", arial;
 }
-table {
-  width: 100%;
-  max-width: 600px;
-  height: 320px;
-  border-collapse: collapse;
-  border: 1px solid #38678f;
-  margin: 50px auto;
-  background: white;
-}
-th {
-  background: #EEEEEE;
-  height: 54px;
-  width: 25%;
-  font-weight: lighter;
-  text-shadow: 0 1px 0 #38678f;
-  color: white;
-  border: 1px solid #38678f;
-  box-shadow: inset 0px 1px 2px #568ebd;
-  transition: all 0.2s;
-}
-tr {
-  border-bottom: 1px solid #EEEEEE;
-}
-tr:last-child {
-  border-bottom: 0px;
-}
-td {
-  border-right: 1px solid #EEEEEE;
-  padding: 10px;
-  transition: all 0.2s;
-}
-td:last-child {
-  border-right: 0px;
-}
-td.selected {
-  background: #d7e4ef;
-  z-index: ;
-}
-td input {
-  font-size: 14px;
-  background: none;
-  outline: none;
-  border: 0;
-  display: table-cell;
-  height: 100%;
-  width: 100%;
-}
-td input:focus {
-  box-shadow: 0 1px 0 steelblue;
-  color: steelblue;
-}
-.heavyTable {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  animation: float 5s infinite;
-}
-.main {
-  max-width: 600px;
-  padding: 10px;
-  margin: auto;
-}
-.content {
-  color: white;
-  text-align: center;
-}
-.content p,
-.content pre,
-.content h2 {
-  text-align: left;
-}
-.content pre {
-  padding: 1.2em 0 0.5em;
-  background: white;
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  color: #38678f;
-}
-.content .download {
-  margin: auto;
-  background: rgba(255, 255, 255, 0.1);
-  display: inline-block;
-  padding: 1em 1em;
-  border-radius: 12em;
-  margin-bottom: 2em;
-}
-h1 {
-  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
 </style>
+<!--
+<link type="text/css" rel="stylesheet" href="/css/main.css" media="screen" />
+
+<link rel="stylesheet" type="text/css" href="/css/dataTables/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="/css/dataTables/shCore.css">
+<link rel="stylesheet" type="text/css" href="/css/dateTimePicker/jquery.datetimepicker.css">
+-->
+<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.css">
+
+<link rel="stylesheet" type="text/css" href="http://xdsoft.net/scripts/jquery.datetimepicker.css">
+
+<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" language="javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" language="javascript" src="http://xdsoft.net/scripts/jquery.datetimepicker.js"></script>
+
+<!--
+<script type="text/javascript" language="javascript" src="/js/jQuery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" language="javascript" src="/js/dataTables/jquery.dataTables.js"></script>
+<script type="text/javascript" language="javascript" src="/js/dataTables/shCore.js"></script>
+<script type="text/javascript" language="javascript" src="/js/dateTimePicker/jquery.datetimepicker.js"></script>
+-->
+<script>
+$(document).ready(function() {
+	$('#mainTable').dataTable();
+	$('#datepicker').datetimepicker();
+	
+} );
+
+function validate () {
+  if(document.getElementById('datepicker').value=="") {
+    alert("Fill In Date Field");
+    return false;
+  }
+  return true;
+}
+
+</script>
+
+</script>
 </head>
   <body>
 	<div align="center">
-	<form action="/timeInput" method="post">
+	<form action="/timeInput" method="post" onsubmit='return validate ()'>
 	  <select name="abbreviation">
 		<option value="UTCPlus1">Alpha Time Zone</option>
 		<option value="UTCPlus1030">Australian Central Daylight Time</option>
@@ -330,17 +282,13 @@ h1 {
 		<option value="UTCPlus6">Yekaterinburg Time</option>
 		<option value="UTC">Zulu Time Zone</option>
 		</select>
-	  <p/>
-      <input type="text" name="days" rows="3" cols="30" value="10">Day</input>
-	  <input type="text" name="months" rows="3" cols="30"  value="10">Month</input>
-      <input type="text" name="years" rows="3" cols="30"  value="2014">Year</input>
-	  <input type="text" name="hours" rows="3" cols="30"  value="10">Hours</input>
-	  <input type="text" name="minutes" rows="3" cols="30"  value="10">Minutes</input>
-	  <p/>
+	  	  
+	  <input type="text" id="datepicker" name="datepicker"></input>
+
       <input type="submit" value="Time">
     </form>
-      <table border="0" cellspacing="0" cellpadding="0" >
-        <tbody>
+      <table id="mainTable" border="0" cellspacing="0" cellpadding="0" >
+			<thead>
           <tr>
             <td>
               <strong>Abbreviation</strong>
@@ -355,9 +303,10 @@ h1 {
               <strong>Time zone</strong>
             </td>
             <td>
-              <strong>Current Time</strong>
+              <strong>Current Date/Time</strong>
             </td>
-          </tr>
+          <thead>
+		  <tbody>
           <tr>
             <td>A</td>
             <td>Alpha Time Zone</td>
