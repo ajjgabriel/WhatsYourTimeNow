@@ -9,31 +9,33 @@ body {
   font-family: "Open Sans", arial;
 }
 </style>
-<!--
+
 <link type="text/css" rel="stylesheet" href="/css/main.css" media="screen" />
 
 <link rel="stylesheet" type="text/css" href="/css/dataTables/jquery.dataTables.css">
-<link rel="stylesheet" type="text/css" href="/css/dataTables/shCore.css">
+
 <link rel="stylesheet" type="text/css" href="/css/dateTimePicker/jquery.datetimepicker.css">
--->
-<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.css">
 
-<link rel="stylesheet" type="text/css" href="http://xdsoft.net/scripts/jquery.datetimepicker.css">
 
-<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" language="javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-
-<script type="text/javascript" language="javascript" src="http://xdsoft.net/scripts/jquery.datetimepicker.js"></script>
-
-<!--
 <script type="text/javascript" language="javascript" src="/js/jQuery/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" language="javascript" src="/js/dataTables/jquery.dataTables.js"></script>
-<script type="text/javascript" language="javascript" src="/js/dataTables/shCore.js"></script>
 <script type="text/javascript" language="javascript" src="/js/dateTimePicker/jquery.datetimepicker.js"></script>
--->
+
 <script>
 $(document).ready(function() {
-	$('#mainTable').dataTable();
+	 $('#mainTable').dataTable( {
+		"columnDefs": [ 
+			{
+				"targets": [ 2 ],
+				"visible": false,
+				"searchable": false
+			},
+			{
+				"targets": [ 3 ],
+				"visible": false
+			}
+		]
+	} );
 	$('#datepicker').datetimepicker();
 	
 } );
@@ -287,7 +289,7 @@ function validate () {
 
       <input type="submit" value="Time">
     </form>
-      <table id="mainTable" border="0" cellspacing="0" cellpadding="0" >
+      <table id="mainTable" border="0" cellspacing="0" cellpadding="0" width="100%">
 			<thead>
           <tr>
             <td>
