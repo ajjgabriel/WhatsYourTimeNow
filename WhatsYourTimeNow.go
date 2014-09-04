@@ -9,47 +9,47 @@ import (
 
 
 type TimeEvent struct {
-		UTCMinus1		time.Time
-		UTCMinus2		time.Time
-		UTCMinus230		time.Time
-		UTCMinus3		time.Time
-		UTCMinus330		time.Time
-		UTCMinus4		time.Time
-		UTCMinus430		time.Time
-		UTCMinus5		time.Time
-		UTCMinus6		time.Time
-		UTCMinus7		time.Time
-		UTCMinus8		time.Time
-		UTCMinus9		time.Time
-		UTCMinus930		time.Time
-		UTCMinus10		time.Time
-		UTCMinus11		time.Time
-		UTCMinus12		time.Time
-        UTC    			time.Time
-		UTCPlus1		time.Time
-		UTCPlus2		time.Time
-		UTCPlus3		time.Time
-		UTCPlus330		time.Time
-		UTCPlus4		time.Time
-		UTCPlus430		time.Time
-		UTCPlus5		time.Time
-		UTCPlus530		time.Time
-		UTCPlus545		time.Time
-		UTCPlus6		time.Time
-		UTCPlus630		time.Time
-		UTCPlus7		time.Time
-		UTCPlus8		time.Time
-		UTCPlus9		time.Time
-		UTCPlus930		time.Time
-		UTCPlus10		time.Time
-		UTCPlus1030		time.Time
-		UTCPlus11		time.Time
-		UTCPlus1130		time.Time
-		UTCPlus12		time.Time
-		UTCPlus1245		time.Time
-		UTCPlus13		time.Time
-		UTCPlus1345		time.Time
-		UTCPlus14		time.Time
+		UTCMinus1		string
+		UTCMinus2		string
+		UTCMinus230		string
+		UTCMinus3		string
+		UTCMinus330		string
+		UTCMinus4		string
+		UTCMinus430		string
+		UTCMinus5		string
+		UTCMinus6		string
+		UTCMinus7		string
+		UTCMinus8		string
+		UTCMinus9		string
+		UTCMinus930		string
+		UTCMinus10		string
+		UTCMinus11		string
+		UTCMinus12		string
+        UTC    			string
+		UTCPlus1		string
+		UTCPlus2		string
+		UTCPlus3		string
+		UTCPlus330		string
+		UTCPlus4		string
+		UTCPlus430		string
+		UTCPlus5		string
+		UTCPlus530		string
+		UTCPlus545		string
+		UTCPlus6		string
+		UTCPlus630		string
+		UTCPlus7		string
+		UTCPlus8		string
+		UTCPlus9		string
+		UTCPlus930		string
+		UTCPlus10		string
+		UTCPlus1030		string
+		UTCPlus11		string
+		UTCPlus1130		string
+		UTCPlus12		string
+		UTCPlus1245		string
+		UTCPlus13		string
+		UTCPlus1345		string
+		UTCPlus14		string
 }
 func init() {
     http.HandleFunc("/", root)
@@ -158,95 +158,99 @@ func timeInput(w http.ResponseWriter, r *http.Request) {
 	minutes, _ := strconv.Atoi(r.FormValue("datepicker")[14:16])
 	var addedTiming = timeToBeAdded(r.FormValue("abbreviation"), years,time.Month(months),days,hours,minutes)
 	
-	timeEvent.UTCMinus1 = time.Now().UTC().Add(-1 * time.Hour).Add(addedTiming)
-	timeEvent.UTCMinus2 = time.Now().UTC().Add(-2 * time.Hour).Add(addedTiming)
-	timeEvent.UTCMinus230 = time.Now().UTC().Add(-2 * time.Hour).Add(-30 * time.Minute).Add(addedTiming)
-	timeEvent.UTCMinus3 = time.Now().UTC().Add(-3 * time.Hour).Add(addedTiming)
-	timeEvent.UTCMinus330 = time.Now().UTC().Add(-3 * time.Hour).Add(-30 * time.Minute).Add(addedTiming)
-	timeEvent.UTCMinus4 = time.Now().UTC().Add(-4 * time.Hour).Add(addedTiming)
-	timeEvent.UTCMinus430 = time.Now().UTC().Add(-4 * time.Hour).Add(-30 * time.Minute).Add(addedTiming)
-	timeEvent.UTCMinus5 = time.Now().UTC().Add(-5 * time.Hour).Add(addedTiming)
-	timeEvent.UTCMinus6 = time.Now().UTC().Add(-6 * time.Hour).Add(addedTiming)
-	timeEvent.UTCMinus7 = time.Now().UTC().Add(-7 * time.Hour).Add(addedTiming)
-	timeEvent.UTCMinus8 = time.Now().UTC().Add(-8 * time.Hour).Add(addedTiming)
-	timeEvent.UTCMinus9 = time.Now().UTC().Add(-9 * time.Hour).Add(addedTiming)
-	timeEvent.UTCMinus930 = time.Now().UTC().Add(-9 * time.Hour).Add(-30 * time.Minute).Add(addedTiming)
-	timeEvent.UTCMinus10 = time.Now().UTC().Add(-10 * time.Hour).Add(addedTiming)
-	timeEvent.UTCMinus11 = time.Now().UTC().Add(-11 * time.Hour).Add(addedTiming)
-	timeEvent.UTCMinus12 = time.Now().UTC().Add(-12 * time.Hour).Add(addedTiming)
-	timeEvent.UTC = time.Now().UTC().Add(addedTiming)
-	timeEvent.UTCPlus1 = time.Now().UTC().Add(1 * time.Hour).Add(addedTiming)
-	timeEvent.UTCPlus2 = time.Now().UTC().Add(2 * time.Hour).Add(addedTiming)
-	timeEvent.UTCPlus3 = time.Now().UTC().Add(3 * time.Hour).Add(addedTiming)
-	timeEvent.UTCPlus330 = time.Now().UTC().Add(3 * time.Hour).Add(30 * time.Minute).Add(addedTiming)
-	timeEvent.UTCPlus4 = time.Now().UTC().Add(4 * time.Hour).Add(addedTiming)
-	timeEvent.UTCPlus430 = time.Now().UTC().Add(4 * time.Hour).Add(30 * time.Minute).Add(addedTiming)
-	timeEvent.UTCPlus5 = time.Now().UTC().Add(5 * time.Hour).Add(addedTiming)
-	timeEvent.UTCPlus530 = time.Now().UTC().Add(5 * time.Hour).Add(30 * time.Minute).Add(addedTiming)
-	timeEvent.UTCPlus545 = time.Now().UTC().Add(5 * time.Hour).Add(45 * time.Minute).Add(addedTiming)
-	timeEvent.UTCPlus6 = time.Now().UTC().Add(6 * time.Hour).Add(addedTiming)
-	timeEvent.UTCPlus630 = time.Now().UTC().Add(6 * time.Hour).Add(30 * time.Minute).Add(addedTiming)
-	timeEvent.UTCPlus7 = time.Now().UTC().Add(7 * time.Hour).Add(addedTiming)
-	timeEvent.UTCPlus8 = time.Now().UTC().Add(8 * time.Hour).Add(addedTiming)
-	timeEvent.UTCPlus9 = time.Now().UTC().Add(9 * time.Hour).Add(addedTiming)
-	timeEvent.UTCPlus930 = time.Now().UTC().Add(9 * time.Hour).Add(30 * time.Minute).Add(addedTiming)
-	timeEvent.UTCPlus10 = time.Now().UTC().Add(10 * time.Hour).Add(addedTiming)
-	timeEvent.UTCPlus1030 = time.Now().UTC().Add(10 * time.Hour).Add(30 * time.Minute).Add(addedTiming)
-	timeEvent.UTCPlus11 = time.Now().UTC().Add(11 * time.Hour).Add(addedTiming)
-	timeEvent.UTCPlus1130 = time.Now().UTC().Add(11 * time.Hour).Add(30 * time.Minute).Add(addedTiming)
-	timeEvent.UTCPlus12 = time.Now().UTC().Add(12 * time.Hour).Add(addedTiming)
-	timeEvent.UTCPlus1245 = time.Now().UTC().Add(12 * time.Hour).Add(45 * time.Minute).Add(addedTiming)
-	timeEvent.UTCPlus13 = time.Now().UTC().Add(13 * time.Hour).Add(addedTiming)
-	timeEvent.UTCPlus1345 = time.Now().UTC().Add(13 * time.Hour).Add(45 * time.Minute).Add(addedTiming)
-	timeEvent.UTCPlus14 = time.Now().UTC().Add(14 * time.Hour).Add(addedTiming)
+	timeEvent.UTCMinus1  = formatTime(time.Now().UTC().Add(-1 * time.Hour).Add(addedTiming))
+	timeEvent.UTCMinus2 = formatTime(time.Now().UTC().Add(-2 * time.Hour).Add(addedTiming))
+	timeEvent.UTCMinus230 = formatTime(time.Now().UTC().Add(-2 * time.Hour).Add(-30 * time.Minute).Add(addedTiming))
+	timeEvent.UTCMinus3 = formatTime(time.Now().UTC().Add(-3 * time.Hour).Add(addedTiming))
+	timeEvent.UTCMinus330 = formatTime(time.Now().UTC().Add(-3 * time.Hour).Add(-30 * time.Minute).Add(addedTiming))
+	timeEvent.UTCMinus4 = formatTime(time.Now().UTC().Add(-4 * time.Hour).Add(addedTiming))
+	timeEvent.UTCMinus430 = formatTime(time.Now().UTC().Add(-4 * time.Hour).Add(-30 * time.Minute).Add(addedTiming))
+	timeEvent.UTCMinus5 = formatTime(time.Now().UTC().Add(-5 * time.Hour).Add(addedTiming))
+	timeEvent.UTCMinus6 = formatTime(time.Now().UTC().Add(-6 * time.Hour).Add(addedTiming))
+	timeEvent.UTCMinus7 = formatTime(time.Now().UTC().Add(-7 * time.Hour).Add(addedTiming))
+	timeEvent.UTCMinus8 = formatTime(time.Now().UTC().Add(-8 * time.Hour).Add(addedTiming))
+	timeEvent.UTCMinus9 = formatTime(time.Now().UTC().Add(-9 * time.Hour).Add(addedTiming))
+	timeEvent.UTCMinus930 = formatTime(time.Now().UTC().Add(-9 * time.Hour).Add(-30 * time.Minute).Add(addedTiming))
+	timeEvent.UTCMinus10 = formatTime(time.Now().UTC().Add(-10 * time.Hour).Add(addedTiming))
+	timeEvent.UTCMinus11 = formatTime(time.Now().UTC().Add(-11 * time.Hour).Add(addedTiming))
+	timeEvent.UTCMinus12 = formatTime(time.Now().UTC().Add(-12 * time.Hour).Add(addedTiming))
+	timeEvent.UTC = formatTime(time.Now().UTC().Add(addedTiming))
+	timeEvent.UTCPlus1 = formatTime(time.Now().UTC().Add(1 * time.Hour).Add(addedTiming))
+	timeEvent.UTCPlus2 = formatTime(time.Now().UTC().Add(2 * time.Hour).Add(addedTiming))
+	timeEvent.UTCPlus3 = formatTime(time.Now().UTC().Add(3 * time.Hour).Add(addedTiming))
+	timeEvent.UTCPlus330 = formatTime(time.Now().UTC().Add(3 * time.Hour).Add(30 * time.Minute).Add(addedTiming))
+	timeEvent.UTCPlus4 = formatTime(time.Now().UTC().Add(4 * time.Hour).Add(addedTiming))
+	timeEvent.UTCPlus430 = formatTime(time.Now().UTC().Add(4 * time.Hour).Add(30 * time.Minute).Add(addedTiming))
+	timeEvent.UTCPlus5 = formatTime(time.Now().UTC().Add(5 * time.Hour).Add(addedTiming))
+	timeEvent.UTCPlus530 = formatTime(time.Now().UTC().Add(5 * time.Hour).Add(30 * time.Minute).Add(addedTiming))
+	timeEvent.UTCPlus545 = formatTime(time.Now().UTC().Add(5 * time.Hour).Add(45 * time.Minute).Add(addedTiming))
+	timeEvent.UTCPlus6 = formatTime(time.Now().UTC().Add(6 * time.Hour).Add(addedTiming))
+	timeEvent.UTCPlus630 = formatTime(time.Now().UTC().Add(6 * time.Hour).Add(30 * time.Minute).Add(addedTiming))
+	timeEvent.UTCPlus7 = formatTime(time.Now().UTC().Add(7 * time.Hour).Add(addedTiming))
+	timeEvent.UTCPlus8 = formatTime(time.Now().UTC().Add(8 * time.Hour).Add(addedTiming))
+	timeEvent.UTCPlus9 = formatTime(time.Now().UTC().Add(9 * time.Hour).Add(addedTiming))
+	timeEvent.UTCPlus930 = formatTime(time.Now().UTC().Add(9 * time.Hour).Add(30 * time.Minute).Add(addedTiming))
+	timeEvent.UTCPlus10 = formatTime(time.Now().UTC().Add(10 * time.Hour).Add(addedTiming))
+	timeEvent.UTCPlus1030 = formatTime(time.Now().UTC().Add(10 * time.Hour).Add(30 * time.Minute).Add(addedTiming))
+	timeEvent.UTCPlus11 = formatTime(time.Now().UTC().Add(11 * time.Hour).Add(addedTiming))
+	timeEvent.UTCPlus1130 = formatTime(time.Now().UTC().Add(11 * time.Hour).Add(30 * time.Minute).Add(addedTiming))
+	timeEvent.UTCPlus12 = formatTime(time.Now().UTC().Add(12 * time.Hour).Add(addedTiming))
+	timeEvent.UTCPlus1245 = formatTime(time.Now().UTC().Add(12 * time.Hour).Add(45 * time.Minute).Add(addedTiming))
+	timeEvent.UTCPlus13 = formatTime(time.Now().UTC().Add(13 * time.Hour).Add(addedTiming))
+	timeEvent.UTCPlus1345 = formatTime(time.Now().UTC().Add(13 * time.Hour).Add(45 * time.Minute).Add(addedTiming))
+	timeEvent.UTCPlus14 = formatTime(time.Now().UTC().Add(14 * time.Hour).Add(addedTiming))
 	whatsYourTimeNowForm.ExecuteTemplate(w, "WhatsYourTimeNow.jsp", timeEvent);
+}
+
+func formatTime(t time.Time) string {
+  return t.Format("2006/01/02 15:04:05")
 }
 
 func root(w http.ResponseWriter, r *http.Request) {
 	
 	timeEvent := new(TimeEvent);
 	
-	timeEvent.UTCMinus1 = time.Now().UTC().Add(-1 * time.Hour)
-	timeEvent.UTCMinus2 = time.Now().UTC().Add(-2 * time.Hour)
-	timeEvent.UTCMinus230 = time.Now().UTC().Add(-2 * time.Hour).Add(-30 * time.Minute)
-	timeEvent.UTCMinus3 = time.Now().UTC().Add(-3 * time.Hour)
-	timeEvent.UTCMinus330 = time.Now().UTC().Add(-3 * time.Hour).Add(-30 * time.Minute)
-	timeEvent.UTCMinus4 = time.Now().UTC().Add(-4 * time.Hour)
-	timeEvent.UTCMinus430 = time.Now().UTC().Add(-4 * time.Hour).Add(-30 * time.Minute)
-	timeEvent.UTCMinus5 = time.Now().UTC().Add(-5 * time.Hour)
-	timeEvent.UTCMinus6 = time.Now().UTC().Add(-6 * time.Hour)
-	timeEvent.UTCMinus7 = time.Now().UTC().Add(-7 * time.Hour)
-	timeEvent.UTCMinus8 = time.Now().UTC().Add(-8 * time.Hour)
-	timeEvent.UTCMinus9 = time.Now().UTC().Add(-9 * time.Hour)
-	timeEvent.UTCMinus930 = time.Now().UTC().Add(-9 * time.Hour).Add(-30 * time.Minute)
-	timeEvent.UTCMinus10 = time.Now().UTC().Add(-10 * time.Hour )
-	timeEvent.UTCMinus11 = time.Now().UTC().Add(-11 * time.Hour)
-	timeEvent.UTCMinus12 = time.Now().UTC().Add(-12 * time.Hour)
-	timeEvent.UTC = time.Now().UTC()
-	timeEvent.UTCPlus1 = time.Now().UTC().Add(1 * time.Hour)
-	timeEvent.UTCPlus2 = time.Now().UTC().Add(2 * time.Hour)
-	timeEvent.UTCPlus3 = time.Now().UTC().Add(3 * time.Hour)
-	timeEvent.UTCPlus330 = time.Now().UTC().Add(3 * time.Hour).Add(30 * time.Minute)
-	timeEvent.UTCPlus4 = time.Now().UTC().Add(4 * time.Hour)
-	timeEvent.UTCPlus430 = time.Now().UTC().Add(4 * time.Hour).Add(30 * time.Minute)
-	timeEvent.UTCPlus5 = time.Now().UTC().Add(5 * time.Hour)
-	timeEvent.UTCPlus530 = time.Now().UTC().Add(5 * time.Hour).Add(30 * time.Minute)
-	timeEvent.UTCPlus545 = time.Now().UTC().Add(5 * time.Hour).Add(45 * time.Minute)
-	timeEvent.UTCPlus6 = time.Now().UTC().Add(6 * time.Hour)
-	timeEvent.UTCPlus630 = time.Now().UTC().Add(6 * time.Hour).Add(30 * time.Minute)
-	timeEvent.UTCPlus7 = time.Now().UTC().Add(7 * time.Hour)
-	timeEvent.UTCPlus8 = time.Now().UTC().Add(8 * time.Hour)
-	timeEvent.UTCPlus9 = time.Now().UTC().Add(9 * time.Hour)
-	timeEvent.UTCPlus930 = time.Now().UTC().Add(9 * time.Hour).Add(30 * time.Minute)
-	timeEvent.UTCPlus10 = time.Now().UTC().Add(10 * time.Hour)
-	timeEvent.UTCPlus1030 = time.Now().UTC().Add(10 * time.Hour).Add(30 * time.Minute)
-	timeEvent.UTCPlus11 = time.Now().UTC().Add(11 * time.Hour)
-	timeEvent.UTCPlus1130 = time.Now().UTC().Add(11 * time.Hour).Add(30 * time.Minute)
-	timeEvent.UTCPlus12 = time.Now().UTC().Add(12 * time.Hour)
-	timeEvent.UTCPlus1245 = time.Now().UTC().Add(12 * time.Hour).Add(45 * time.Minute)
-	timeEvent.UTCPlus13 = time.Now().UTC().Add(13 * time.Hour)
-	timeEvent.UTCPlus1345 = time.Now().UTC().Add(13 * time.Hour).Add(45 * time.Minute)
-	timeEvent.UTCPlus14 = time.Now().UTC().Add(14 * time.Hour)
+	timeEvent.UTCMinus1 =  formatTime(time.Now().UTC().Add(-1 * time.Hour))
+	timeEvent.UTCMinus2 = formatTime(time.Now().UTC().Add(-2 * time.Hour))
+	timeEvent.UTCMinus230 = formatTime(time.Now().UTC().Add(-2 * time.Hour).Add(-30 * time.Minute))
+	timeEvent.UTCMinus3 = formatTime(time.Now().UTC().Add(-3 * time.Hour))
+	timeEvent.UTCMinus330 = formatTime(time.Now().UTC().Add(-3 * time.Hour).Add(-30 * time.Minute))
+	timeEvent.UTCMinus4 = formatTime(time.Now().UTC().Add(-4 * time.Hour))
+	timeEvent.UTCMinus430 = formatTime(time.Now().UTC().Add(-4 * time.Hour).Add(-30 * time.Minute))
+	timeEvent.UTCMinus5 = formatTime(time.Now().UTC().Add(-5 * time.Hour))
+	timeEvent.UTCMinus6 = formatTime(time.Now().UTC().Add(-6 * time.Hour))
+	timeEvent.UTCMinus7 = formatTime(time.Now().UTC().Add(-7 * time.Hour))
+	timeEvent.UTCMinus8 = formatTime(time.Now().UTC().Add(-8 * time.Hour))
+	timeEvent.UTCMinus9 = formatTime(time.Now().UTC().Add(-9 * time.Hour))
+	timeEvent.UTCMinus930 = formatTime(time.Now().UTC().Add(-9 * time.Hour).Add(-30 * time.Minute))
+	timeEvent.UTCMinus10 = formatTime(time.Now().UTC().Add(-10 * time.Hour))
+	timeEvent.UTCMinus11 = formatTime(time.Now().UTC().Add(-11 * time.Hour))
+	timeEvent.UTCMinus12 = formatTime(time.Now().UTC().Add(-12 * time.Hour))
+	timeEvent.UTC = formatTime(time.Now().UTC())
+	timeEvent.UTCPlus1 = formatTime(time.Now().UTC().Add(1 * time.Hour))
+	timeEvent.UTCPlus2 = formatTime(time.Now().UTC().Add(2 * time.Hour))
+	timeEvent.UTCPlus3 = formatTime(time.Now().UTC().Add(3 * time.Hour))
+	timeEvent.UTCPlus330 = formatTime(time.Now().UTC().Add(3 * time.Hour).Add(30 * time.Minute))
+	timeEvent.UTCPlus4 = formatTime(time.Now().UTC().Add(4 * time.Hour))
+	timeEvent.UTCPlus430 = formatTime(time.Now().UTC().Add(4 * time.Hour).Add(30 * time.Minute))
+	timeEvent.UTCPlus5 = formatTime(time.Now().UTC().Add(5 * time.Hour))
+	timeEvent.UTCPlus530 = formatTime(time.Now().UTC().Add(5 * time.Hour).Add(30 * time.Minute))
+	timeEvent.UTCPlus545 = formatTime(time.Now().UTC().Add(5 * time.Hour).Add(45 * time.Minute))
+	timeEvent.UTCPlus6 = formatTime(time.Now().UTC().Add(6 * time.Hour))
+	timeEvent.UTCPlus630 = formatTime(time.Now().UTC().Add(6 * time.Hour).Add(30 * time.Minute))
+	timeEvent.UTCPlus7 = formatTime(time.Now().UTC().Add(7 * time.Hour))
+	timeEvent.UTCPlus8 = formatTime(time.Now().UTC().Add(8 * time.Hour))
+	timeEvent.UTCPlus9 = formatTime(time.Now().UTC().Add(9 * time.Hour))
+	timeEvent.UTCPlus930 = formatTime(time.Now().UTC().Add(9 * time.Hour).Add(30 * time.Minute))
+	timeEvent.UTCPlus10 = formatTime(time.Now().UTC().Add(10 * time.Hour))
+	timeEvent.UTCPlus1030 = formatTime(time.Now().UTC().Add(10 * time.Hour).Add(30 * time.Minute))
+	timeEvent.UTCPlus11 = formatTime(time.Now().UTC().Add(11 * time.Hour))
+	timeEvent.UTCPlus1130 = formatTime(time.Now().UTC().Add(11 * time.Hour).Add(30 * time.Minute))
+	timeEvent.UTCPlus12 = formatTime(time.Now().UTC().Add(12 * time.Hour))
+	timeEvent.UTCPlus1245 = formatTime(time.Now().UTC().Add(12 * time.Hour).Add(45 * time.Minute))
+	timeEvent.UTCPlus13 = formatTime(time.Now().UTC().Add(13 * time.Hour))
+	timeEvent.UTCPlus1345 = formatTime(time.Now().UTC().Add(13 * time.Hour).Add(45 * time.Minute))
+	timeEvent.UTCPlus14 = formatTime(time.Now().UTC().Add(14 * time.Hour))
 	
 	whatsYourTimeNowForm.ExecuteTemplate(w, "WhatsYourTimeNow.jsp", timeEvent);
 }

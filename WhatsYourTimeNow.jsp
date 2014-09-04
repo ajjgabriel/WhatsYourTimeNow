@@ -303,7 +303,7 @@ function validate () {
               <strong>Time zone</strong>
             </td>
             <td>
-              <strong>Current Date/Time</strong>
+              <strong>Date/Time</strong>
             </td>
           <thead>
 		  <tbody>
