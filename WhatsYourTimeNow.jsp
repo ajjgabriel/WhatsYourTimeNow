@@ -1,45 +1,24 @@
 <html>
 <head>
-<style>
-* {
-  box-sizing: border-box;
-}
-body {
-  background: #EEEEEE;
-  font-family: "Open Sans", arial;
-}
-</style>
 
-<link type="text/css" rel="stylesheet" href="/css/main.css" media="screen" />
 
-<link rel="stylesheet" type="text/css" href="/css/dataTables/jquery.dataTables.css">
 
 <link rel="stylesheet" type="text/css" href="/css/dateTimePicker/jquery.datetimepicker.css">
 
+<script type="text/javascript" language="javascript" src="js/jQuery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" language="javascript" src="js/dateTimePicker/jquery.datetimepicker.js"></script>
 
-<script type="text/javascript" language="javascript" src="/js/jQuery/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" language="javascript" src="/js/dataTables/jquery.dataTables.js"></script>
-<script type="text/javascript" language="javascript" src="/js/dateTimePicker/jquery.datetimepicker.js"></script>
+<link href="css/fooTable/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="css/fooTable/footable.core.css?v=2-0-1" rel="stylesheet" type="text/css"/>
+
+<script src="js/fooTable/footable.js?v=2-0-1" type="text/javascript"></script>
+<script src="js/fooTable/footable.sort.js?v=2-0-1" type="text/javascript"></script>
+<script src="js/fooTable/footable.filter.js?v=2-0-1" type="text/javascript"></script>
+<script src="js/fooTable/footable.paginate.js?v=2-0-1" type="text/javascript"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 
 <script>
-$(document).ready(function() {
-	 $('#mainTable').dataTable( {
-		"columnDefs": [ 
-			{
-				"targets": [ 2 ],
-				"visible": false,
-				"searchable": false
-			},
-			{
-				"targets": [ 3 ],
-				"visible": false
-			}
-		]
-	} );
-	$('#datepicker').datetimepicker();
-	
-} );
-
+  
 function validate () {
   if(document.getElementById('datepicker').value=="") {
     alert("Fill In Date Field");
@@ -47,6 +26,29 @@ function validate () {
   }
   return true;
 }
+
+$(document).ready(function() {
+
+	$('table.demo').footable().bind('footable_filtering', function(e){
+      var selected = $(this).prev('p').find('.filter-status').find(':selected').text();
+      if (selected && selected.length > 0){
+        e.filter += (e.filter && e.filter.length > 0) ? ' ' + selected : selected;
+        e.clear = !e.filter;
+      }
+    });
+
+    $('.clear-filter').click(function (e) {
+      e.preventDefault();
+      var $parent = $(this).closest('p');
+      $parent.find('.filter-status').val('');
+      if ($parent.find('#filter1').length > 0) {
+        $('table.demo.one').trigger('footable_clear_filter');
+      } 
+    });
+
+	$('#datepicker').datetimepicker();
+	
+} );
 
 </script>
 
@@ -287,26 +289,30 @@ function validate () {
 	  	  
 	  <input type="text" id="datepicker" name="datepicker"></input>
 
-      <input type="submit" value="Time">
+      <input class="ui-button ui-widget ui-state-default ui-corner-all" type="submit" value="Time">
     </form>
-      <table id="mainTable" border="0" cellspacing="0" cellpadding="0" width="100%">
+	<p>
+	Search: <input id="filter1" type="text"/>
+	<a href="#clear" class="clear-filter" title="clear filter">[clear]</a>
+	</p>
+      <table class="table demo one" data-filter="#filter1" data-page-size="10">
 			<thead>
           <tr>
-            <td>
+            <th data-toggle="true">
               <strong>Abbreviation</strong>
-            </td>
-            <td>
+            </th>
+            <th data-toggle="true">
               <strong>Full name</strong>
-            </td>
-            <td>
+            </th>
+            <th data-hide="phone,tablet">
               <strong>Location</strong>
-            </td>
-            <td>
+            </th>
+            <th data-hide="phone,tablet">
               <strong>Time zone</strong>
-            </td>
-            <td>
+            </th>
+            <th data-toggle="true">
               <strong>Date/Time</strong>
-            </td>
+            </th>
           <thead>
 		  <tbody>
           <tr>
