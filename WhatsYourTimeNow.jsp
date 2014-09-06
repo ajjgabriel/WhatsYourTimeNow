@@ -17,44 +17,14 @@
 <script src="js/fooTable/footable.paginate.js?v=2-0-1" type="text/javascript"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 
-<script>
-  
-function validate () {
-  if(document.getElementById('datepicker').value=="") {
-    alert("Fill In Date Field");
-    return false;
-  }
-  return true;
-}
-
-$(document).ready(function() {
-
-	$('table.demo').footable().bind('footable_filtering', function(e){
-      var selected = $(this).prev('p').find('.filter-status').find(':selected').text();
-      if (selected && selected.length > 0){
-        e.filter += (e.filter && e.filter.length > 0) ? ' ' + selected : selected;
-        e.clear = !e.filter;
-      }
-    });
-
-    $('.clear-filter').click(function (e) {
-      e.preventDefault();
-      var $parent = $(this).closest('p');
-      $parent.find('.filter-status').val('');
-      if ($parent.find('#filter1').length > 0) {
-        $('table.demo.one').trigger('footable_clear_filter');
-      } 
-    });
-
-	$('#datepicker').datetimepicker();
-	
-} );
-
-</script>
+<script src="js/onload.js" type="text/javascript"></script>
+<link href="images/favicon.ico" rel="icon" type="image/icon" />
 
 </script>
 </head>
   <body>
+  <img border="0" src="images/logo.png" alt="Whats Your Time Now"/>
+  </p>
 	<div align="center">
 	<form action="/timeInput" method="post" onsubmit='return validate ()'>
 	  <select name="abbreviation">
