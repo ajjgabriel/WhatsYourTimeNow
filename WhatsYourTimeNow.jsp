@@ -23,9 +23,9 @@
 </script>
 </head>
   <body>
-  <img border="0" src="images/logo.png" alt="Whats Your Time Now"/>
-  </p>
 	<div align="center">
+	<img border="0" src="images/logo.png" alt="Whats Your Time Now"/>
+	</p>
 	<form action="/timeInput" method="post" onsubmit='return validate ()'>
 	  <select name="abbreviation">
 		<option value="UTCPlus1">Alpha Time Zone</option>
