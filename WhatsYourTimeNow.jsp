@@ -27,7 +27,7 @@
 	<img border="0" src="images/logo.png" alt="Whats Your Time Now"/>
 	</p>
 	<form action="/timeInput" method="post" onsubmit='return validate ()'>
-	  <select name="abbreviation">
+	  <select id="abbreviation" name="abbreviation">
 		<option value="UTCPlus1">Alpha Time Zone</option>
 		<option value="UTCPlus1030">Australian Central Daylight Time</option>
 		<option value="UTCPlus930">Australian Central Standard Time</option>
@@ -257,7 +257,8 @@
 		<option value="UTC">Zulu Time Zone</option>
 		</select>
 	  	  
-	  <input type="text" id="datepicker" name="datepicker"></input>
+	  <input type="text" id="datepicker" name="datepicker" value={{.TimeKeyedIn}}></input>
+	  <input type="hidden" id="timeAbbreviation" name="timeAbbreviation" value={{.TimeAbbreviation}}></input>
 
       <input class="ui-button ui-widget ui-state-default ui-corner-all" type="submit" value="Time">
     </form>

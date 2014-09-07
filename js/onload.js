@@ -3,7 +3,23 @@
     alert("Fill In Date Field");
     return false;
   }
+  
+  var abbreviationSelect = document.getElementById("abbreviation");
+  var selectedAbbreviation = abbreviationSelect.options[abbreviationSelect.selectedIndex].text;
+  document.getElementById('timeAbbreviation').value = selectedAbbreviation;
+
   return true;
+}
+
+function getAbbreviationText(selectedText){
+
+	var dd = document.getElementById('abbreviation');
+	for (var i = 0; i < dd.options.length; i++) {
+		if (dd.options[i].text === selectedText) {
+			dd.selectedIndex = i;
+			break;
+		}
+	}
 }
 
 $(document).ready(function() {
@@ -26,5 +42,6 @@ $(document).ready(function() {
     });
 
 	$('#datepicker').datetimepicker();
+	getAbbreviationText(document.getElementById('timeAbbreviation').value);
 	
 } );

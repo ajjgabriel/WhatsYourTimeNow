@@ -50,6 +50,9 @@ type TimeEvent struct {
 		UTCPlus13		string
 		UTCPlus1345		string
 		UTCPlus14		string
+		TimeKeyedIn		string
+		TimeAbbreviation string
+		
 }
 func init() {
     http.HandleFunc("/", root)
@@ -199,6 +202,9 @@ func timeInput(w http.ResponseWriter, r *http.Request) {
 	timeEvent.UTCPlus13 = formatTime(time.Now().UTC().Add(13 * time.Hour).Add(addedTiming))
 	timeEvent.UTCPlus1345 = formatTime(time.Now().UTC().Add(13 * time.Hour).Add(45 * time.Minute).Add(addedTiming))
 	timeEvent.UTCPlus14 = formatTime(time.Now().UTC().Add(14 * time.Hour).Add(addedTiming))
+	timeEvent.TimeKeyedIn = r.FormValue("datepicker")
+	timeEvent.TimeAbbreviation  = r.FormValue("timeAbbreviation")
+	
 	whatsYourTimeNowForm.ExecuteTemplate(w, "WhatsYourTimeNow.jsp", timeEvent);
 }
 
@@ -251,6 +257,8 @@ func root(w http.ResponseWriter, r *http.Request) {
 	timeEvent.UTCPlus13 = formatTime(time.Now().UTC().Add(13 * time.Hour))
 	timeEvent.UTCPlus1345 = formatTime(time.Now().UTC().Add(13 * time.Hour).Add(45 * time.Minute))
 	timeEvent.UTCPlus14 = formatTime(time.Now().UTC().Add(14 * time.Hour))
+	timeEvent.TimeKeyedIn = ""
+	timeEvent.TimeAbbreviation = ""
 	
 	whatsYourTimeNowForm.ExecuteTemplate(w, "WhatsYourTimeNow.jsp", timeEvent);
 }
