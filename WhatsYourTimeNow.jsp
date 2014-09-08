@@ -3,18 +3,18 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="/css/dateTimePicker/jquery.datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="css/dateTimePicker/jquery.datetimepicker.css">
 
 <link href="css/fooTable/bootstrap.css" rel="stylesheet" type="text/css"/>
 <link href="css/fooTable/footable.core.css?v=2-0-1" rel="stylesheet" type="text/css"/>
 
 <script type="text/javascript" language="javascript" src="js/jQuery/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" language="javascript" src="js/dateTimePicker/jquery.datetimepicker.min.js" async></script>
+<script type="text/javascript" language="javascript" src="js/dateTimePicker/jquery.datetimepicker.min.js"></script>
 
-<script src="js/fooTable/footable.min.js?v=2-0-1" type="text/javascript" async></script>
-<script src="js/fooTable/footable.sort.min.js?v=2-0-1" type="text/javascript" async></script>
-<script src="js/fooTable/footable.filter.min.js?v=2-0-1" type="text/javascript" async></script>
-<script src="js/fooTable/footable.paginate.min.js?v=2-0-1" type="text/javascript" async></script>
+<script src="js/fooTable/footable.min.js?v=2-0-1" type="text/javascript"></script>
+<script src="js/fooTable/footable.sort.min.js?v=2-0-1" type="text/javascript"></script>
+<script src="js/fooTable/footable.filter.min.js?v=2-0-1" type="text/javascript"></script>
+<script src="js/fooTable/footable.paginate.min.js?v=2-0-1" type="text/javascript"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 
 <script src="js/onload.js" type="text/javascript"></script>
