@@ -2,7 +2,12 @@
 <head>
 
 
-
+<meta charset="utf-8">
+<meta name="Description" CONTENT="Getting The Correct Time At Different Time Zones">
+<meta name="viewport"
+          content="width = device-width, initial-scale = 1.0, minimum-scale = 1.0, maximum-scale = 1.0, user-scalable = no"/>
+    
+<title>Whats Your Time Now</title>
 <link rel="stylesheet" type="text/css" href="css/dateTimePicker/jquery.datetimepicker.css">
 
 <link href="css/fooTable/bootstrap.css" rel="stylesheet" type="text/css"/>
@@ -19,9 +24,6 @@
 
 <script src="js/onload.js" type="text/javascript"></script>
 <link href="images/favicon.ico" rel="icon" type="image/icon" />
-<meta charset="utf-8">
-<meta name="Description" CONTENT="Getting The Correct Time At Different Time Zones">
-<title>Whats Your Time Now</title>
 </script>
 </head>
   <body>
@@ -261,17 +263,17 @@
 	  	  
 	  <input type="text" id="datepicker" name="datepicker" value={{.TimeKeyedIn}}></input>
 	  <input type="hidden" id="timeAbbreviation" name="timeAbbreviation" value={{.TimeAbbreviation}}></input>
-
-      <input class="ui-button ui-widget ui-state-default ui-corner-all" type="submit" value="Time">
+		</p>
+      <input class="ui-button ui-widget ui-state-default ui-corner-all" type="submit" value="Whats Your Time Now?">
     </form>
 	<p>
 	Search: <input id="filter1" type="text"/>
 	<a href="#clear" class="clear-filter" title="clear filter">[clear]</a>
 	</p>
-      <table class="table demo one" data-filter="#filter1" data-page-size="10">
+      <table class="table demo one" data-filter="#filter1" data-page-size="5">
 			<thead>
           <tr>
-            <th data-toggle="true">
+            <th data-hide="phone">
               <strong>Abbreviation</strong>
             </th>
             <th data-toggle="true">
@@ -283,7 +285,7 @@
             <th data-hide="phone,tablet">
               <strong>Time zone</strong>
             </th>
-            <th data-toggle="true">
+            <th>
               <strong>Date/Time</strong>
             </th>
           <thead>
