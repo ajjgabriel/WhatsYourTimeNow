@@ -153,13 +153,15 @@ func timeInput(w http.ResponseWriter, r *http.Request) {
 	
 	
 	timeEvent := new(TimeEvent);
-	
-	years, _ := strconv.Atoi(r.FormValue("datepicker")[0:4])
-	months, _ := strconv.Atoi(r.FormValue("datepicker")[5:7])
-	days, _ := strconv.Atoi(r.FormValue("datepicker")[8:10])
-	hours, _ := strconv.Atoi(r.FormValue("datepicker")[11:13])
-	minutes, _ := strconv.Atoi(r.FormValue("datepicker")[14:16])
-	var addedTiming = timeToBeAdded(r.FormValue("abbreviation"), years,time.Month(months),days,hours,minutes)
+	var addedTiming time.Duration = 0
+	if r.FormValue("datepicker") != "" {
+		years, _ := strconv.Atoi(r.FormValue("datepicker")[0:4])
+		months, _ := strconv.Atoi(r.FormValue("datepicker")[5:7])
+		days, _ := strconv.Atoi(r.FormValue("datepicker")[8:10])
+		hours, _ := strconv.Atoi(r.FormValue("datepicker")[11:13])
+		minutes, _ := strconv.Atoi(r.FormValue("datepicker")[14:16])
+		addedTiming = timeToBeAdded(r.FormValue("abbreviation"), years,time.Month(months),days,hours,minutes)
+	}
 	
 	timeEvent.UTCMinus1  = formatTime(time.Now().UTC().Add(-1 * time.Hour).Add(addedTiming))
 	timeEvent.UTCMinus2 = formatTime(time.Now().UTC().Add(-2 * time.Hour).Add(addedTiming))
