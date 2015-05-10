@@ -1,5 +1,7 @@
 WhatsYourTimeNow
 ================
+<img src="https://drone.io/github.com/ajjgabriel/WhatsYourTimeNow/status.png">
+
 
 What's Your Time ?
 
